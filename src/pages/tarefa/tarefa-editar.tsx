@@ -10,7 +10,6 @@ function TarefaEditar() {
   const [status, setStatus] = useState("");
   const [categoriaId, setCategoriaId] = useState("");
 
-
   useEffect(() => {
     if (tarefaId) {
       axios
@@ -18,10 +17,10 @@ function TarefaEditar() {
         .then((response) => {
           console.log(response.data);
           const tarefa = response.data;
-            setTitulo(tarefa.titulo);
-            setDescricao(tarefa.descricao);
-            setStatus(tarefa.status);
-            setCategoriaId(tarefa.categoriaId);
+          setTitulo(tarefa.titulo);
+          setDescricao(tarefa.descricao);
+          setCategoriaId(tarefa.categoriaId);
+          setStatus(tarefa.status);
         });
     }
   }, []);
@@ -29,10 +28,10 @@ function TarefaEditar() {
   function editarTarefa(e: any) {
     e.preventDefault();
     const tarefa = {
-        titulo: titulo,
-        descricao: descricao,
-        status: status,
-        categoriaId: categoriaId,
+      titulo: titulo,
+      descricao: descricao,
+      status: status,
+      categoriaId: categoriaId,
     };
     axios.put(`http://localhost:5000/tarefas/alterar/${tarefaId}`, tarefa);
   }
@@ -63,7 +62,7 @@ function TarefaEditar() {
         <div>
           <label>Status:</label>
           <input
-            type="radio"
+            type="text"
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             required
@@ -72,7 +71,7 @@ function TarefaEditar() {
         <div>
           <label>CategoriaId:</label>
           <input
-            type="number"
+            type="text"
             value={categoriaId}
             onChange={(e) => setCategoriaId(e.target.value)}
             required
